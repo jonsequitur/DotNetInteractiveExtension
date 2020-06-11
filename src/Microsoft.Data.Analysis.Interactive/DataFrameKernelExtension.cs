@@ -173,18 +173,18 @@ DataFrame _df = DataFrame.LoadCsv(filename: @""{csv.FullName}"");
             {
                 var directive = new Command("#!generatedataframe")
                 {
-                    Handler = CommandHandler.Create(async (FileInfo csv, string variableName, string typeName, KernelInvocationContext context) =>
+                    Handler = CommandHandler.Create(async (FileInfo csv, string toVariable, string typeName, KernelInvocationContext context) =>
                     {
                         // do the job
                         try
                         {
                             if (csv != null)
                             {
-                                await HandleCsvAsync(csharpKernel, csv, typeName, variableName, context);
+                                await HandleCsvAsync(csharpKernel, csv, typeName, toVariable, context);
                             }
                             else
                             {
-                                await HandleDataFrameAsync(csharpKernel, variableName, typeName, context);
+                                await HandleDataFrameAsync(csharpKernel, toVariable, typeName, context);
                             }
                         }
                         catch (Exception ex)
